@@ -15,7 +15,7 @@ class Todo extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'complete', 'description', 'user_id'
+        'title', 'complete', 'description'
     ];
 
     /**
@@ -28,4 +28,10 @@ class Todo extends Model
         'complete' => 'boolean',
         'user_id' => 'int'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

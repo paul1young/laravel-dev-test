@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,7 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('todos', '\App\Http\Controllers\TodoController')->except(['edit', 'create']);
+Route::resource('todos', '\App\Http\Controllers\TodoController')->except(['edit', 'create'])->middleware('auth:sanctum');
+// specified a middleware to allow laravel to automatically get the authenticated user for the policy
+
 
 Route::post('/login', function (Request $request) {
     $request->validate([
